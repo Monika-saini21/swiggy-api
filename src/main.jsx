@@ -10,38 +10,39 @@ import Orderdetail from './components/Orderdetail.jsx'
 import Restaurants from './components/Restaurants.jsx'
 import { Cartprovider } from './context/Cartcontext.jsx'
 import Cart from './components/Cart.jsx'
+import { SearchProvider } from './context/Searchcontext.jsx' // ✅ fixed name
 
 const router = createBrowserRouter([
   {
     path:"/",
     element:<App/>,
     children:[
- {
-    path:"/",
-    element:[
-       <Orderdetail/>,
-       <Cards/>,
-    ]
-    
-  },
-   {
-    path:"Cart",
-    element:<Cart/>
-   },
-  {
-    path:"restaurants/:resId",
-    element:<Restaurants/>
-  }
+      {
+        path:"/",
+        element:[
+          <Orderdetail key="order" />,
+          <Cards key="cards" />,
+        ]
+      },
+      {
+        path:"Cart",
+        element:<Cart/>
+      },
+      {
+        path:"restaurants/:resId",
+        element:<Restaurants/>
+      }
     ],
     errorElement:<Error/>
-  },
- 
-])
+  }
+]);
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <Cartprovider>
-   <RouterProvider router={router}/>
-   </Cartprovider>
-  </StrictMode>,
-)
+    <SearchProvider> 
+      <Cartprovider>
+        <RouterProvider router={router} />
+      </Cartprovider>
+    </SearchProvider>
+  </StrictMode>
+);

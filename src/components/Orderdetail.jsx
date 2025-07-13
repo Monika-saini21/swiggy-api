@@ -10,7 +10,7 @@ function Orderdetail() {
     </div>
     <hr className='ml-35 mr-37 shadow-2xl text-gray-300 '></hr>
     <p className='text-2xl  font-bold ml-35 mt-4'>Restaurants with online food delivery in Bangalore</p>
-    <ul className='flex justify-start gap-2.5 py-5 pl-35 text-sm font-semibold sticky z-20 top-17 bg-white '>
+    <ul className='flex justify-start gap-2.5 py-5 pl-35 text-sm font-semibold  bg-white '>
     <li className='flex border-1 shadow-sm border-gray-300 p-1.5 pl-3.5 pr-3 rounded-3xl ' >Filter <img className='h-4 mt-1.5  ml-1.5' src="https://cdn-icons-png.flaticon.com/128/8017/8017777.png" alt="" /></li>
     <li className='flex border-1 shadow-sm border-gray-300 p-1.5 pl-3.5 pr-3 rounded-3xl'>Sort By <img className='h-4 mt-1.5 ml-1' src="https://cdn-icons-png.flaticon.com/128/2985/2985150.png" alt=""  /></li>
     <li className='border-1 shadow-sm border-gray-300 p-1.5 pl-3.5 pr-3 rounded-3xl'>Fast Delivery</li>
