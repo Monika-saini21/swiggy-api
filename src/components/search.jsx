@@ -4,11 +4,13 @@ import { Link } from 'react-router-dom';
 
 function Search() {
  const { searchTerm, setSearchTerm, filtered}=useSearch()
+
+  
   return (
     <>
    
  
-   <div className=' left-142' >
+   <form className=' left-142' onSubmit={(e) => setSearchTerm(e.target.value)} >
           <input
             type="text"
             value={searchTerm}
@@ -42,7 +44,7 @@ function Search() {
         </ul>
       )}
       </div>
-      </div>
+      </form>
     </>
   );
 }
