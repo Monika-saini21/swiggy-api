@@ -17,10 +17,13 @@ function useRestaurants(){
           .catch((err) => console.error('Fetch error:', err));
       }, [resId]);
     
+ 
+
       useEffect(() => {
         setSearchTerm("");
       }, [resId]);
 
+ 
      const { name, cuisines, costForTwoMessage, avgRating, totalRatingsString, locality } =
     data?.data?.cards[2]?.card?.card?.info || {};
 

@@ -1,22 +1,22 @@
 
-import React, { useEffect, useRef, useState } from 'react'
+
 import { Link } from 'react-router-dom'
 import { useCart } from '../context/Cartcontext';
 import useHoverDetail from '../hooks/useHoverDetail';
 
 function Hoverdetail() {
- const {cartItems}= useCart()
+ const {cartItems,getItemQuantity}= useCart()
 const { setIsHovered, showDetail}= useHoverDetail();
    
   
- let totalItem=0;
- 
- cartItems?.map((item)=>{
-   totalItem=totalItem+(item.inStock*item.price);
- })
+ let totalItem = cartItems.reduce((total, item) => {
+  const quantity = getItemQuantity(item.id);
+  const price = item.price || item.defaultPrice || 0;
+  return total + price*quantity;
+}, 0);
   return (
     <>
-   
+
   <div
         className=" "
        onMouseEnter={() => setIsHovered(true)}
@@ -33,8 +33,9 @@ const { setIsHovered, showDetail}= useHoverDetail();
           
            <ul className="text-sm text-gray-600 space-y-1 ">
              {cartItems.length>0?
-             cartItems.map((item) => (
-               
+             cartItems.map((item) => {
+              const quantity = getItemQuantity(item.id) 
+               return(
                <li className='flex gap-2 mb-0 pb-0 items-center border-gray-200 border-b-2' key={item.id}>
                   <img
                    src={`https://media-assets.swiggy.com/swiggy/image/upload/${item.imageId}`}
@@ -43,11 +44,11 @@ const { setIsHovered, showDetail}= useHoverDetail();
                  />
                  
                <p className='w-35 mr-3 truncate'>{item.name}</p> 
-               ₹{item.price / 100 || item.defaultPrice / 100}
+               ₹{((item.price || item.defaultPrice || 0) * quantity) / 100}
               
                </li>
  
-             ) 
+              ) }
            ):(
              <div>
                <h1 className='text-2xl font-bold text-center mb-3'>Cart Empty</h1>

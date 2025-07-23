@@ -1,17 +1,20 @@
-import { StrictMode } from 'react'
+import { lazy, StrictMode, Suspense } from 'react'
 import { createRoot } from 'react-dom/client'
 import "/index.css"
 import App from './App.jsx'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
-import Error from './components/Error.jsx'
-import Cards from './components/Cards.jsx'
-import Orderdetail from './components/Orderdetail.jsx'
-import Restaurants from './components/Restaurants.jsx'
 import { Cartprovider } from './context/Cartcontext.jsx'
-import Cart from './components/Cart.jsx'
+
 import { SearchProvider } from './context/Searchcontext.jsx' // ✅ fixed name
 import { FilterProvider } from './context/FilterContext.jsx'
+import Loading from './components/Loading.jsx'
+
+
+const Error = lazy(()=>import('./components/Error.jsx'))
+const Cart = lazy(()=>import('./components/Cart.jsx'))
+const Cards = lazy(()=>import('./components/Cards.jsx'))
+const Restaurants = lazy(()=>import('./components/Restaurants.jsx'))
 
 const router = createBrowserRouter([
   {
@@ -21,20 +24,20 @@ const router = createBrowserRouter([
       {
         path:"/",
         element:[
-          <Orderdetail key="order" />,
-          <Cards key="cards" />,
+          <Suspense fallback={<Loading/>}>    <Cards/>,</Suspense>
+      
         ]
       },
       {
         path:"Cart",
-        element:<Cart/>
+        element:<Suspense fallback={<Loading/>}><Cart/></Suspense>
       },
       {
         path:"restaurants/:resId",
-        element:<Restaurants/>
+        element:<Suspense fallback={<Loading/>}><Restaurants/></Suspense> 
       }
     ],
-    errorElement:<Error/>
+    errorElement:<Suspense fallback={<Loading/>}><Error/></Suspense>
   }
 ]);
 

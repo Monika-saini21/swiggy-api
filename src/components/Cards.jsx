@@ -1,13 +1,15 @@
 import { Link } from 'react-router-dom';
 import { useFilters } from '../context/FilterContext';
 import useCards from '../hooks/useCards';
+import Orderdetail from '../components/Orderdetail.jsx'
+import Offline from './Offline';
 
 
 function Cards() {
    const { filters } = useFilters();
    const data = useCards();
    const allRestaurants = data?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants || [];
-
+  
  
   const filteredRestaurants = allRestaurants.filter((res) => {
     const info = res.info;
@@ -20,8 +22,15 @@ function Cards() {
     return true;
   });
 
+ 
+
   return (
     <>
+    <Orderdetail />
+    <div className="flex justify-center  ">
+    <Offline/>
+    </div>
+     
     <div className='flex justify-center flex-wrap w-50% gap-9 m-18 mt-4'>
       {filteredRestaurants.map((data) => (
         <Link key={data.info.id} to={`restaurants/${data.info.id}`}>

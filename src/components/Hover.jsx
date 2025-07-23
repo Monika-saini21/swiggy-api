@@ -15,7 +15,6 @@ export default function HoverCard() {
         className="w-full h-full object-cover"
       />
 
-      {/* Hover Content */}
       <div
         className={`
           absolute inset-0 bg-black bg-opacity-50 text-white flex items-center justify-center
