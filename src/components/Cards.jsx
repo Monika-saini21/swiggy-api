@@ -31,7 +31,7 @@ function Cards() {
     <Offline/>
     </div>
      
-    <div className='flex justify-center flex-wrap w-50% gap-9 m-18 mt-4'>
+    <div className='flex justify-center flex-wrap w-50% gap-9 mx-18 mt-4'>
       {filteredRestaurants.map((data) => (
         <Link key={data.info.id} to={`restaurants/${data.info.id}`}>
        <div className=' mb-3 w-60 hover:scale-95 duration-300'>
