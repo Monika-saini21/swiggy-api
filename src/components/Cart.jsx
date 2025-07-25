@@ -14,9 +14,9 @@ let totalItem = cartItems.reduce((total, item) => {
 }, 0);
   return (
     <>
-      <div className=" px-15  ml-74 ">
+      <div className=" px-15 mb-10  ml-74 ">
         {cartItems.length === 0 ? (
-         <div className='ml-45 mt-30 w-80 flex-col text-center  '>
+         <div className='ml-45 mt-30 w-80 flex-col text-center mb-30 '>
              <img className='w-50 ml-14 h-50' src="https://cdn-icons-png.flaticon.com/256/8239/8239542.png" alt="" srcset="" />
               <p>Your cart is empty.</p>
               <p>You can go to home page to view more restaurants</p>
